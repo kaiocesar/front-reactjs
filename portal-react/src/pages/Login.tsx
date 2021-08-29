@@ -13,21 +13,21 @@ const Login = () => {
     const history = useHistory();
     const handleLogin = (email: string, password: string) => {
       axios
-          .post(`${process.env.REACT_APP_API_URL}/auth/login/`, { email, password })
-          .then((res) => {
-            dispatch(
-              authSlice.actions.setAuthTokens({
-                token: res.data.access,
-                refreshToken: res.data.refresh,
-              })
-            );
-            dispatch(authSlice.actions.setAccount(res.data.user));
-            setLoading(false);
-            history.push("/");
-          })
-          .catch((err) => {
-            setMessage(err.response.data.detail.toString());
-          });
+        .post(`${process.env.REACT_APP_API_URL}/auth/login/`, { email, password })
+        .then((res) => {
+          dispatch(
+            authSlice.actions.setAuthTokens({
+              token: res.data.access,
+              refreshToken: res.data.refresh,
+            })
+          );
+          dispatch(authSlice.actions.setAccount(res.data.user));
+          setLoading(false);
+          history.push("/");
+        })
+        .catch((err) => {
+          setMessage(err.response.data.detail.toString());
+        });
     };
     const formik = useFormik({
         initialValues: {
