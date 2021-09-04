@@ -13,7 +13,7 @@ const Login = () => {
     const history = useHistory();
     const handleLogin = (email: string, password: string) => {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/auth/login/`, { email, password })
+        .post(`http://${process.env.REACT_APP_API_URL}/auth/login/`, { email, password })
         .then((res) => {
           dispatch(
             authSlice.actions.setAuthTokens({
@@ -26,7 +26,8 @@ const Login = () => {
           history.push("/");
         })
         .catch((err) => {
-          setMessage(err.response.data.detail.toString());
+          console.log(process.env.REACT_APP_API_URL);
+          setMessage('deu ruim no redux');
         });
     };
     const formik = useFormik({
@@ -39,8 +40,8 @@ const Login = () => {
             handleLogin(values.email, values.password);
         },
         validationSchema: Yup.object({
-            email: Yup.string().trim().required("le nom d'utilisateur est requis"),
-            password: Yup.string().trim().required("Le mot de passe est requis"),
+            email: Yup.string().trim().required("Email is required"),
+            password: Yup.string().trim().required("Password is required"),
         }),
     });
 

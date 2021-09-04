@@ -18,11 +18,11 @@ const Profile = () => {
             onClick={handleLogout}
             className="rounded p-2 w-32 bg-red-700 text-white"
           >
-            Deconnexion
+            Desconnect
           </button>
         </div>
         <div className="w-full h-full text-center items-center">
-          <p className="self-center my-auto">Welcome</p>
+          <p className="self-center my-auto">Welcome to the dashboard</p>
         </div>
       </div>
     );
