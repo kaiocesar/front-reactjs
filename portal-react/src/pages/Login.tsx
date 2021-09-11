@@ -23,11 +23,11 @@ const Login = () => {
           );
           dispatch(authSlice.actions.setAccount(res.data.user));
           setLoading(false);
-          history.push("/");
+          history.push("/profile");
         })
         .catch((err) => {
-          console.log(process.env.REACT_APP_API_URL);
-          setMessage('deu ruim no redux');
+          console.log(err);
+          setMessage(`${err}`);
         });
     };
     const formik = useFormik({
@@ -60,6 +60,7 @@ const Login = () => {
                 placeholder="Email"
                 name="email"
                 value={formik.values.email}
+                autoComplete="off"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -70,6 +71,7 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 name="password"
+                autoComplete="off"
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

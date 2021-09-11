@@ -1,5 +1,6 @@
 import React from "react";
 import Login from './pages/Login';
+import Home from './pages/Home';
 import Profile from './pages/Profile';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store, { persistor } from "./store";
@@ -14,8 +15,9 @@ const App = () => {
         <Router>
           <div>
             <Switch>
+              <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
-              <ProtectedRoute exact path="/" component={Profile} />
+              <ProtectedRoute exact path="/profile" component={Profile} />
             </Switch>
           </div>
         </Router>
